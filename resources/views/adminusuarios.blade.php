@@ -88,8 +88,8 @@
                             <p class="card-heading">Usuarios Registrados</p>
 
                             <div class="card-table">
-                                <div class="table-responsive">
-                                    <table class="table" title="A table within a card">
+                                <div class="">
+                                    <table class="table" title="Usuarios Registrados">
                                         <thead>
                                         <tr>
                                             <th>Nombre</th>
@@ -103,21 +103,16 @@
                                                     <td id="{{$usuario->id}}">{{$usuario->nombre}}</td>
                                                     <td id="{{$usuario->id}}">{{$usuario->apellido}}</td>
                                                     <td id="{{$usuario->id}}">{{$usuario->tipousuario->descripcion}}</td>
-                                                    <td id="{{$usuario->id}}"><ul class="nav nav-list" style="width: 10px;height: 10px;margin-top: 0px;z-index: 1;">
-                                                            <li class="dropdown margin-right" style="z-index: 1000">
-                                                                <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
-                                                                    <span class="access-hide">@yield('usuario')</span>
-                                                                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
-                                                                </a>
-                                                                <ul class="dropdown-menu dropdown-menu-right" style="z-index: 1000">
+                                                    <td id="{{$usuario->id}}">
+                                                        <ul class="nav nav-list margin-no pull-right">
+                                                            <li class="dropdown">
+                                                                <a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span style="z-index: 0" class="icon">view_module</span></a>
+                                                                <ul class="dropdown-menu dropdown-menu-left" style="   ">
                                                                     <li>
-                                                                        <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Configurar Perfil</a>
+                                                                        <a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">build</span>&nbsp;Modificar</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Foto</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class="padding-right-lg waves-attach" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Salir</a>
+                                                                        <a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">delete</span>&nbsp;Eliminar</a>
                                                                     </li>
                                                                 </ul>
                                                             </li>
@@ -133,14 +128,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-action">
-                            <div class="card-action-btn pull-right">
-                                <a class="btn btn-flat waves-attach" href="javascript:void(0)"><span
-                                            class="icon"></span></a>
-                                <a class="btn btn-flat waves-attach" href="javascript:void(0)"><span
-                                            class="icon"></span></a>
                             </div>
                         </div>
                     </div>
