@@ -30,6 +30,7 @@
         @yield('contenido')
     </div>
 </main>
+@include('contenidos.mensaje')
 <!-- js -->
 @include('contenidos.pie')
 <script src="js/base.min.js"></script>

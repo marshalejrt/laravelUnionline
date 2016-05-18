@@ -24,13 +24,30 @@
                     });
                 });
         @endif
+        function msgbox($informacion,accion){
+            @section('mensaje')
+
+                informacion
+            @endsection
+            @section('accionOK')
+                accion
+            @endsection
+
+                    }
     </script>
 @endsection
 @section('contenido')
-    {{--@foreach($usuarios as $usuario)
-        <p>{{$usuario->nombre}} {{$usuario->apellido}} | Tipo: {{$usuario->tipousuario->descripcion}}</p>
-    @endforeach--}}
-
+    @if(Session::has('interaccion'))
+        <script>
+            $(function(){
+                new PNotify({
+                    title: 'Mensaje',
+                    text: '{{Session::get('mensaje')}}',
+                    type: '{{Session::get('type')}}'
+                });
+            });
+        </script>
+    @endif
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
             <section class="content-inner margin-top-no">
@@ -107,12 +124,13 @@
                                                         <ul class="nav nav-list margin-no pull-right">
                                                             <li class="dropdown">
                                                                 <a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span style="z-index: 0" class="icon">view_module</span></a>
-                                                                <ul class="dropdown-menu dropdown-menu-left" style="   ">
+                                                                <ul class="dropdown-menu dropdown-menu-right" style="   ">
                                                                     <li>
                                                                         <a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">build</span>&nbsp;Modificar</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">delete</span>&nbsp;Eliminar</a>
+                                                                        {{--<a class="waves-attach" onclick='eliminar("{{$usuario->nombre}}"+" "+"{{$usuario->apellido}}","{{$usuario->id}}","El Usuario")'><span class="icon margin-right-sm">delete</span>&nbsp;Eliminar</a>--}}
+                                                                        <a class="waves-attach" onclick="msgbox('Desea Eliminar el Usuario?')"  href="#msgbox" data-backdrop="static" data-toggle="modal"><span class="icon margin-right-sm">delete</span>&nbsp;Eliminar</a>
                                                                     </li>
                                                                 </ul>
                                                             </li>
@@ -131,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
 
             </section>
         </div>

@@ -29,3 +29,8 @@ Route::get('/adminusuarios', function(){
     $usuarios=\App\Usuario::all();
     return view('adminusuarios')->with(['tipos_usuario'=>$tipos_usuario, 'usuarios'=>$usuarios]);
 })->name('adminusuarios');
+
+Route::get('/borrarUsuario/{id}', [
+    'uses' => 'ControladorUsuario@getBorrarUsuario',
+    'as' => 'borrarUsuario',
+]);

@@ -39,4 +39,17 @@ class ControladorUsuario extends Controller
         $usuario->save();
         return redirect()->back();
     }
+
+    public function getBorrarUsuario($id)
+    {
+
+        if (!$usuario = Usuario::find($id)) {
+            return redirect()->back()->with(['interaccion' => 'No se encontro el Usuario, Intente Nuevamente...', 'tipomensaje' => 'error']);
+        }
+        $usuario->delete();
+        return redirect()->back()->with(['interaccion' => 'Registro Eliminado Satisfactoriamente...', 'type' => 'success']);
+    }
+
+
+
 }
