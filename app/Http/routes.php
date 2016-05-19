@@ -19,18 +19,44 @@ Route::get('/inicio', function(){
    return view('index');
 })->name('index');
 
+//-----------------RUTAS USUARIOS-----------------------------------------
+Route::get('/adminusuarios', function(){
+    $tipos_usuario=\App\Tipousuario::all();
+    $usuarios=\App\Usuario::all();
+    $mensaje='';
+    $accion='';
+    $estilo='';
+    $estamodificando=false;
+    return view('adminusuarios')->with(['tipos_usuario'=>$tipos_usuario, 'usuarios'=>$usuarios,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
+})->name('adminusuarios');
+
 Route::post('/agregarUsuario', [
     'uses' => 'ControladorUsuario@postAgregarUsuario',
     'as' => 'agregarUsuario'
 ]);
 
-Route::get('/adminusuarios', function(){
-    $tipos_usuario=\App\Tipousuario::all();
-    $usuarios=\App\Usuario::all();
-    return view('adminusuarios')->with(['tipos_usuario'=>$tipos_usuario, 'usuarios'=>$usuarios]);
-})->name('adminusuarios');
-
-Route::get('/borrarUsuario/{id}', [
-    'uses' => 'ControladorUsuario@getBorrarUsuario',
-    'as' => 'borrarUsuario',
+Route::get('/eliminarUsuario/{id}', [
+    'uses' => 'ControladorUsuario@getEliminarUsuario',
+    'as' => 'eliminarUsuario'
 ]);
+//-----------------RUTAS ASIGNATURAS-----------------------------------------
+Route::get('/adminusasignaturas', function(){
+    $asignaturas=\App\Asignatura::all();
+    $mensaje='';
+    $accion='';
+    $estilo='';
+    $estamodificando=false;
+    return view('adminasignaturas')->with([ 'asignaturas'=>$asignaturas,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
+})->name('adminasignaturas');
+
+Route::post('/agregarAsignatura', [
+    'uses' => 'ControladorAsignaturas@postAgregarAsignatura',
+    'as' => 'agregarAsignatura'
+]);
+
+Route::get('/eliminarAsignatura/{id}', [
+    'uses' => 'ControladorAsignaturas@getEliminarAsignatura',
+    'as' => 'eliminarAsignatura'
+]);
+//-----------------RUTAS INSCRIPCION DE MATERIAS-----------------------------------------
+//inscribirmaterias
