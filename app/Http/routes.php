@@ -24,16 +24,18 @@ Route::get('/adminusuarios', function(){
     $estilo='';
     $estamodificando=false;
     return view('adminusuarios')->with(['tipos_usuario'=>$tipos_usuario, 'usuarios'=>$usuarios,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
-})->name('adminusuarios');
+})->name('adminusuarios')->middleware('auth');
 
 Route::post('/agregarUsuario', [
     'uses' => 'ControladorUsuario@postAgregarUsuario',
-    'as' => 'agregarUsuario'
+    'as' => 'agregarUsuario',
+    'middleware' => 'auth'
 ]);
 
 Route::get('/eliminarUsuario/{id}', [
     'uses' => 'ControladorUsuario@getEliminarUsuario',
-    'as' => 'eliminarUsuario'
+    'as' => 'eliminarUsuario',
+    'middleware' => 'auth'
 ]);
 //-----------------RUTAS ASIGNATURAS-----------------------------------------
 Route::get('/adminusasignaturas', function(){
@@ -43,16 +45,18 @@ Route::get('/adminusasignaturas', function(){
     $estilo='';
     $estamodificando=false;
     return view('adminasignaturas')->with([ 'asignaturas'=>$asignaturas,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
-})->name('adminasignaturas');
+})->name('adminasignaturas')->middleware('auth');
 
 Route::post('/agregarAsignatura', [
     'uses' => 'ControladorAsignaturas@postAgregarAsignatura',
-    'as' => 'agregarAsignatura'
+    'as' => 'agregarAsignatura',
+    'middleware' => 'auth'
 ]);
 
 Route::get('/eliminarAsignatura/{id}', [
     'uses' => 'ControladorAsignaturas@getEliminarAsignatura',
-    'as' => 'eliminarAsignatura'
+    'as' => 'eliminarAsignatura',
+    'middleware' => 'auth'
 ]);
 //-----------------RUTAS INSCRIPCION DE MATERIAS-----------------------------------------
 Route::get('/inscribirmaterias', function(){
@@ -70,13 +74,17 @@ Route::get('/inscribirmaterias', function(){
 //-----------------RUTAS INICIO DE SESION-----------------------------------------
 Route::get('/inicio', function () {
     return view('index');
-})->name('index');
+})->name('index')->middleware('auth');
 
 
 Route::post('/ingresar', [
     'uses' => 'ControladorSesion@postIngresar',
     'as' => 'ingresar'
 ]);
+Route::get('/logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
 Route::get('/login', function () {
     return view('login');
 })->name('login');
