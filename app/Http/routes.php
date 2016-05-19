@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/inicio', function(){
-   return view('index');
-})->name('index');
-
 //-----------------RUTAS USUARIOS-----------------------------------------
 Route::get('/adminusuarios', function(){
     $tipos_usuario=\App\Tipousuario::all();
@@ -61,10 +57,27 @@ Route::get('/eliminarAsignatura/{id}', [
 //-----------------RUTAS INSCRIPCION DE MATERIAS-----------------------------------------
 Route::get('/inscribirmaterias', function(){
     $asignaturas=\App\Asignatura::all();
+    $tipos_usuario=\App\Tipousuario::all();
+    $usuarios=\App\Usuario::all();
     $mensaje='';
     $accion='';
     $estilo='';
     $estamodificando=false;
-    return view('inscribirmaterias')->with([ 'asignaturas'=>$asignaturas,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
+    return view('inscripciones')->with(['asignaturas'=>$asignaturas,'tipos_usuario'=>$tipos_usuario, 'usuarios'=>$usuarios,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
 })->name('inscribirmaterias');
-//inscribirmaterias
+
+
+//-----------------RUTAS INICIO DE SESION-----------------------------------------
+Route::get('/inicio', function () {
+    return view('index');
+})->name('index');
+
+
+Route::post('/ingresar', [
+    'uses' => 'ControladorSesion@postIngresar',
+    'as' => 'ingresar'
+]);
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+

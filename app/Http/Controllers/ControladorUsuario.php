@@ -10,18 +10,6 @@ use DB;
 
 class ControladorUsuario extends Controller
 {
-    public function postIniciarSesion(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        if (Auth::attempt(['email' => $request["email"], 'password' => $request["password"]])) {
-            return redirect()->route('inicio');
-        }
-        return redirect()->back();
-    }
-
     public function postAgregarUsuario(Request $request)
     {
         $op=$request["operacion"];

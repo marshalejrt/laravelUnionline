@@ -1,10 +1,30 @@
 @extends('plantilla.ingreso')
 @section('title')
-    <title>Ingreso</title>
+    <title>UNIONLINE - Universidad del Futuro</title>
 @endsection
 @section('tituloencabezado')
     Bienvenido
 @endsection
+@section('javascript')
+    <script src="js/funcionesGenerales.js"></script>
+    <script>
+        @if(count($errors->all())>1)
+        $(function () {
+                    content = "<ul>";
+                    @foreach($errors->all() as $error)
+                        content += "<li>{{$error}}</li>";
+                    @endforeach
+                    content += "</ul>";
+                    $('body').snackbar({
+                        alive: 4000,
+                        content: content
+                    });
+                });
+        @endif
+    </script>
+@endsection
+
+
 @section('contenido')
     <div class="container">
         <div class="row">
@@ -23,27 +43,30 @@
 											<img alt="Login" src="images/users/avatar-001.jpg">
 										</span>
                                 </p>
-                                <form class="form" >
+                                <form class="form" action="{{route('ingresar')}}" method="post" >
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-10 col-md-push-1">
-                                                <label class="floating-label" for="ui_login_username">Usuario</label>
-                                                <input class="form-control" id="ui_login_username" type="text">
+                                                <label class="floating-label" for="email">Usuario</label>
+                                                <input class="form-control" id="email" name="email" type="text" value="{{old('email')}}">
+                                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-10 col-md-push-1">
-                                                <label class="floating-label" for="ui_login_password">Clave</label>
-                                                <input class="form-control" id="ui_login_password" type="password">
+                                                <label class="floating-label" for="password">Clave</label>
+                                                <input class="form-control" id="password" name="password" type="password">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-10 col-md-push-1">
-                                                <a class="btn btn-block btn-brand waves-attach waves-light" href="{{route('index')}}">Ingresar</a>
+                                                {{--<a class="btn btn-block btn-brand waves-attach waves-light">Ingresar</a>--}}
+
+                                                <button type="submit"  class="btn btn-block btn-brand waves-attach waves-light">Ingresar</button>
                                             </div>
                                         </div>
                                     </div>

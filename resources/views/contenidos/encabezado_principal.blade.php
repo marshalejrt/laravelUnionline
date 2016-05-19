@@ -23,7 +23,7 @@
                     <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Foto</a>
                 </li>
                 <li>
-                    <a class="padding-right-lg waves-attach" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Salir</a>
+                    <a class="padding-right-lg waves-attach" href="{{route('login')}}"><span class="icon icon-lg margin-right">exit_to_app</span>Salir</a>
                 </li>
             </ul>
         </li>

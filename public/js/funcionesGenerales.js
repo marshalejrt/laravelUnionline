@@ -32,3 +32,12 @@ function modificar(id){
     });
     $('.modificar').show();
 }
+
+
+$(document).on("click", ".inscribirMaterias", function () {
+    id=$(this).data("id");
+
+    //---------------
+    $('#materias').modal('show');
+});
+
