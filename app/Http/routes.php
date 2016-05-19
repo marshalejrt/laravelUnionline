@@ -59,4 +59,12 @@ Route::get('/eliminarAsignatura/{id}', [
     'as' => 'eliminarAsignatura'
 ]);
 //-----------------RUTAS INSCRIPCION DE MATERIAS-----------------------------------------
+Route::get('/inscribirmaterias', function(){
+    $asignaturas=\App\Asignatura::all();
+    $mensaje='';
+    $accion='';
+    $estilo='';
+    $estamodificando=false;
+    return view('inscribirmaterias')->with([ 'asignaturas'=>$asignaturas,'mensaje'=>$mensaje,'accion'=>$accion,'estilo'=>$estilo,'estamodificando'=>$estamodificando]);
+})->name('inscribirmaterias');
 //inscribirmaterias
